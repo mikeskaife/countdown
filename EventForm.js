@@ -6,6 +6,8 @@ import {
   TextInput,
   StyleSheet
 } from "react-native";
+import DateTimePicker from "react-native-modal-datetime-picker";
+import { formatDate } from "./api";
 
 const styles = StyleSheet.create({
   form: {
@@ -38,6 +40,10 @@ const styles = StyleSheet.create({
   buttonText: {
     color: "#fff",
     fontSize: 18
+  },
+  borderTop: {
+    borderColor: "#edeeef",
+    borderTopWidth: 0.5
   }
 });
 
@@ -46,7 +52,7 @@ class EventForm extends Component {
     title: "Add Event"
   };
 
-  state = { title: "" };
+  state = { title: "", date: "" };
 
   handleChangeTitle = value => {
     this.setState({ title: value });
@@ -54,6 +60,19 @@ class EventForm extends Component {
 
   handleAddPress = () => {
     this.props.navigation.navigate("list");
+  };
+
+  handleDatePress = () => {
+    this.setState({ showDatePicker: true });
+  };
+
+  handleDatePickerHide = () => {
+    this.setState({ showDatePicker: false });
+  };
+
+  handleDatePicked = date => {
+    this.setState({ date });
+    this.setState({ showDatePicker: false });
   };
 
   render() {
@@ -66,6 +85,20 @@ class EventForm extends Component {
             spellCheck={false}
             onChangeText={this.handleChangeTitle}
             value={this.state.title}
+          />
+          <TextInput
+            style={[styles.text, styles.borderTop]}
+            placeholder="Event date"
+            spellCheck={false}
+            value={formatDate(this.state.date.toString())}
+            editable={!this.state.showDatePicker}
+            onFocus={this.handleDatePress}
+          />
+          <DateTimePicker
+            isVisible={this.state.showDatePicker}
+            mode="datetime"
+            onConfirm={this.handleDatePicked}
+            onCancel={this.handleDatePickerHide}
           />
         </View>
         <TouchableHighlight onPress={this.handleAddPress} style={styles.button}>
