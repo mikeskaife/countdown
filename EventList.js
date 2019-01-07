@@ -15,6 +15,10 @@ class EventList extends Component {
     events: []
   };
 
+  static navigationOptions = {
+    title: "Your Events"
+  };
+
   componentDidMount() {
     setInterval(() => {
       this.setState({
