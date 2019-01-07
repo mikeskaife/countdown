@@ -7,7 +7,9 @@ class EventForm extends Component {
   };
 
   render() {
-    handleAddPress = () => {};
+    handleAddPress = () => {
+      this.props.navigation.navigate(list);
+    };
 
     return (
       <View>
