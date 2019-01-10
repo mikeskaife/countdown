@@ -3,7 +3,7 @@
   "expoServerPort": null,
   "packagerPort": null,
   "packagerPid": null,
-  "expoServerNgrokUrl": null,
-  "packagerNgrokUrl": null,
-  "ngrokPid": null
+  "expoServerNgrokUrl": "https://e7-734.mskaife.countdown.exp.direct",
+  "packagerNgrokUrl": "https://packager.e7-734.mskaife.countdown.exp.direct",
+  "ngrokPid": 67492
 }
