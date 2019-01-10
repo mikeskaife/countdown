@@ -1,5 +1,5 @@
 source 'https://github.com/CocoaPods/Specs.git'
-platform :ios, '10.0'
+platform :ios, '11.0'
 
 target 'countdown' do
   pod 'ExpoKit',
@@ -9,6 +9,7 @@ target 'countdown' do
       "Core"
     ],
     :inhibit_warnings => true
+  pod 'AppAuth', '>= 0.91'  
   pod 'EXAdsAdMob',
     :path => "../node_modules/expo-ads-admob/ios"
   pod 'EXBarCodeScanner',
