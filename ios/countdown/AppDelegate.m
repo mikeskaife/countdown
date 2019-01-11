@@ -3,6 +3,7 @@
 #import "AppDelegate.h"
 #import "ExpoKit.h"
 #import "EXViewController.h"
+#import "RCTLinkingManager.h"
 #import "AppAuth.h"
 
 @interface AppDelegate ()
@@ -12,6 +13,13 @@
 @end
 
 @implementation AppDelegate
+
+
+/*
+- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation {
+    return [RCTLinkingManager application:application openURL:url sourceApplication:sourceApplication annotation:annotation];
+}
+*/
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
@@ -63,16 +71,6 @@
 - (void)application:(UIApplication *)application didRegisterUserNotificationSettings:(nonnull UIUserNotificationSettings *)notificationSettings
 {
     [[ExpoKit sharedInstance] application:application didRegisterUserNotificationSettings:notificationSettings];
-}
-
-- (BOOL)application:(UIApplication *)app
-            openURL:(NSURL *)url
-            options:(NSDictionary<NSString *, id> *)options {
-    if ([_currentAuthorizationFlow resumeAuthorizationFlowWithURL:url]) {
-        _currentAuthorizationFlow = nil;
-        return YES;
-    }
-    return NO;
 }
 
 @end
