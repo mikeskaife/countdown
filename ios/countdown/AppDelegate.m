@@ -3,6 +3,7 @@
 #import "AppDelegate.h"
 #import "ExpoKit.h"
 #import "EXViewController.h"
+#import "AppAuth.h"
 
 @interface AppDelegate ()
 
@@ -62,6 +63,16 @@
 - (void)application:(UIApplication *)application didRegisterUserNotificationSettings:(nonnull UIUserNotificationSettings *)notificationSettings
 {
     [[ExpoKit sharedInstance] application:application didRegisterUserNotificationSettings:notificationSettings];
+}
+
+- (BOOL)application:(UIApplication *)app
+            openURL:(NSURL *)url
+            options:(NSDictionary<NSString *, id> *)options {
+    if ([_currentAuthorizationFlow resumeAuthorizationFlowWithURL:url]) {
+        _currentAuthorizationFlow = nil;
+        return YES;
+    }
+    return NO;
 }
 
 @end
